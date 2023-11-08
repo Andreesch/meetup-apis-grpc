@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package chatbot.ricabot;
+
+import "google/protobuf/timestamp.proto";
+
+service ChatbotService {
+  rpc CreateConversation(CreateConversationRequest) returns (CreateConversationResponse) {}
+  rpc GetConversation(GetConversationRequest) returns (GetConversationResponse) {}
+  rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {}
+}
+
+// Representa a request para o método CreateConversation
+message CreateConversationRequest {
+  // The user's email address. This can be used to send the summary of the conversation to the user.
+  string email = 1;
+}
+
+// The response message for the CreateConversation method.
+message CreateConversationResponse {
+  // The conversation that was created.
+  Conversation conversation = 1;
+}
+
+// The request message for the GetConversation method.
+message GetConversationRequest {
+  // The conversation to retrieve.
+  string conversation_id = 1;
+}
+
+// The response message for the GetConversation method.
+message GetConversationResponse {
+  // The conversation that was retrieved.
+  Conversation conversation = 1;
+}
+
+// The request message for the SendMessage method.
+message SendMessageRequest {
+  // The conversation to send a message to.
+  string conversation_id = 1;
+  // The message to send.
+  Message message = 2;
+}
+
+// The response message for the SendMessage method.
+message SendMessageResponse {
+  // The message that was sent back to the user. This will always be a message from the bot.
+  Message message = 1;
+}
+
+// A conversation between the user and the bot.
+message Conversation {
+  // The conversation's unique identifier.
+  string id = 1;
+  // The time at which the conversation was created.
+  google.protobuf.Timestamp create_time = 2;
+  // The user's email address. This can be used to send the summary of the conversation to the user.
+  string email = 3;
+  // The messages in this conversation in chronological order.
+  repeated Message messages = 4;
+}
+
+// A message in a conversation.
+message Message {
+  // The message's unique identifier.
+  string id = 1;
+  // The time at which the message was sent.
+  google.protobuf.Timestamp create_time = 2;
+  // The author of the message, either the user or the bot.
+  Author author = 3;
+  // The content of the message.
+  string content = 4;
+}
+
+// The author of a message.
+enum Author {
+  // Unspecified - should not be used.
+  AUTHOR_UNSPECIFIED = 0;
+  // The user.
+  AUTHOR_USER = 1;
+  // The bot.
+  AUTHOR_BOT = 2;
+}

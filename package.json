@@ -1,0 +1,35 @@
+{
+  "name": "meetup-apis-grpc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andreesch/meetup-apis-grpc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andreesch/meetup-apis-grpc/issues"
+  },
+  "homepage": "https://github.com/Andreesch/meetup-apis-grpc#readme",
+  "devDependencies": {
+    "@bufbuild/buf": "^1.27.2",
+    "@bufbuild/protoc-gen-es": "^1.4.2",
+    "@connectrpc/protoc-gen-connect-es": "^1.1.3",
+    "@types/node": "^20.9.0",
+    "tsx": "^3.14.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^1.4.2",
+    "@connectrpc/connect": "^1.1.3",
+    "@connectrpc/connect-fastify": "^1.1.3",
+    "@connectrpc/connect-node": "^1.1.3",
+    "fastify": "^4.24.3"
+  }
+}
