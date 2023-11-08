@@ -5,7 +5,7 @@ import { ChatbotService } from "../gen/chatbot/ricabot/service_connect";
 import type { Conversation, Message } from "./domain/types";
 import * as convert from "./connect-convert";
 
-// This is the interface that the ConnectRouter expects to be implemented
+// Interface que será implementada pelo Router
 interface ConversationsService {
   createConversation(email: string): Conversation;
   getConversation(conversationId: string): Conversation | undefined;
@@ -14,7 +14,7 @@ interface ConversationsService {
 
 export default (conversationsService: ConversationsService) =>
   (router: ConnectRouter) =>
-    // Registers chatbot.v1alpha1.ChatbotService and exposes its methods on the ConnectRouter
+    // Registra o chatbot.ricabot.ChatbotService e expoem os métodos para o ConnectRouter
     router.service(ChatbotService, {
       async createConversation(req) {
         const conversation = conversationsService.createConversation(req.email);

@@ -12,72 +12,72 @@ service ChatbotService {
 
 // Representa a request para o método CreateConversation
 message CreateConversationRequest {
-  // The user's email address. This can be used to send the summary of the conversation to the user.
+  // Cria um sumário para o email informado
   string email = 1;
 }
 
-// The response message for the CreateConversation method.
+// A mensagem de resposta para o método CreateConversation
 message CreateConversationResponse {
-  // The conversation that was created.
+  // Conversa criada
   Conversation conversation = 1;
 }
 
-// The request message for the GetConversation method.
+// A mensagem da request do método GetConversation
 message GetConversationRequest {
-  // The conversation to retrieve.
+  // A conversa a ser recuperada
   string conversation_id = 1;
 }
 
-// The response message for the GetConversation method.
+// A mensagem de resposta do método GetConversation
 message GetConversationResponse {
-  // The conversation that was retrieved.
+  // Representa a conversa recuperada
   Conversation conversation = 1;
 }
 
-// The request message for the SendMessage method.
+// Payload de mensagem
 message SendMessageRequest {
-  // The conversation to send a message to.
+  // O identificador da conversa
   string conversation_id = 1;
-  // The message to send.
+  // A mensagem a ser enviada
   Message message = 2;
 }
 
-// The response message for the SendMessage method.
+// A mensagem de resposta do método SendMessage.
 message SendMessageResponse {
-  // The message that was sent back to the user. This will always be a message from the bot.
+  // A mensagem a ser retornada para o usuário, sempre representará a resposta do bot.
   Message message = 1;
 }
 
-// A conversation between the user and the bot.
+// A conversa entre o usuário e o bot
 message Conversation {
-  // The conversation's unique identifier.
+  // Identificador unico da conversa
   string id = 1;
-  // The time at which the conversation was created.
+  // Data da criação da conversa
   google.protobuf.Timestamp create_time = 2;
-  // The user's email address. This can be used to send the summary of the conversation to the user.
+  // O email do usuário de origem da conversa
   string email = 3;
-  // The messages in this conversation in chronological order.
+  // As mensagens da conversa em ordem cronológica
   repeated Message messages = 4;
 }
 
-// A message in a conversation.
+// Uma mensagem dentro da conversa
 message Message {
-  // The message's unique identifier.
+  // Identificador unico da mensagem
   string id = 1;
-  // The time at which the message was sent.
+  // Data de criação da mensagem
   google.protobuf.Timestamp create_time = 2;
-  // The author of the message, either the user or the bot.
+  // O autor da conversa, pode ser o usuário ou o bot
   Author author = 3;
-  // The content of the message.
+  // O conteúdo da mensagem
   string content = 4;
 }
 
-// The author of a message.
+// O autor da mensagem
 enum Author {
-  // Unspecified - should not be used.
+  // Não identificado
   AUTHOR_UNSPECIFIED = 0;
-  // The user.
+  // O usuário
   AUTHOR_USER = 1;
-  // The bot.
+  // O bot
   AUTHOR_BOT = 2;
 }

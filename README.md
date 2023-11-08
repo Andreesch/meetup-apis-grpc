@@ -28,9 +28,3 @@ curl \
   --data '{"conversation_id": "{conversation_id}", "message": {"content": "Meu nome é Ricabot. Em que posso te ajudar motora?"}}' \
    http://localhost:8080/chatbot.ricabot.ChatbotService/SendMessage
 
-curl \
-  --header 'Content-Type: application/json' \
-  --data '{"conversation_id": "{conversation_id}"}' \
-   http://localhost:8080/chatbot.ricabot.ChatbotService/GetConversation
-```
-
